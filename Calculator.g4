@@ -2,8 +2,8 @@ grammar Calculator;
 
 expr: expr op=('*'|'/') expr # MulDiv
     | expr op=('+'|'-') expr # AddSub
-    | INT                    # int
-    | '('expr')'             # parens
+    | INT                    # Int
+    | '('expr')'             # Parens
     ;
 
 INT: [0-9]+ ;

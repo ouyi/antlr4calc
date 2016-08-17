@@ -12,7 +12,42 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-public class Calc {
+public class Main {
+    private static class Visitor extends CalculatorBaseVisitor<Integer> {
+        
+        @Override 
+        public Integer visitParens(CalculatorParser.ParensContext ctx) { 
+            return visit(ctx.expr());
+        }
+
+        @Override 
+        public Integer visitMulDiv(CalculatorParser.MulDivContext ctx) { 
+            int left = visit(ctx.expr(0));
+            int right = visit(ctx.expr(1));
+            if (ctx.op.getType() == CalculatorParser.MUL) {
+                return left * right;
+            } else {
+                return left / right;
+            }
+        }
+        
+        @Override 
+        public Integer visitAddSub(CalculatorParser.AddSubContext ctx) { 
+            int left = visit(ctx.expr(0));
+            int right = visit(ctx.expr(1));
+            if (ctx.op.getType() == CalculatorParser.ADD) {
+                return left + right;
+            } else {
+                return left - right;
+            }
+        }
+
+        @Override 
+        public Integer visitInt(CalculatorParser.IntContext ctx) { 
+            return Integer.valueOf(ctx.INT().getText());
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         String inputFile = null;
         if ( args.length>0 ) inputFile = args[0];
@@ -26,7 +61,7 @@ public class Calc {
         CalculatorParser parser = new CalculatorParser(tokens);
         ParseTree tree = parser.expr(); // parse
 
-        EvalVisitor eval = new EvalVisitor();
+        Visitor eval = new Visitor();
         System.out.println(eval.visit(tree));
     }
 }
