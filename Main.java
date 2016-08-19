@@ -1,9 +1,9 @@
 /***
  * Excerpted from "The Definitive ANTLR 4 Reference",
  * published by The Pragmatic Bookshelf.
- * Copyrights apply to this code. It may not be used to create training material, 
+ * Copyrights apply to this code. It may not be used to create training material,
  * courses, books, articles, and the like. Contact us if you are in doubt.
- * We make no guarantees that this code is fit for any purpose. 
+ * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/tpantlr2 for more book information.
 ***/
 import org.antlr.v4.runtime.*;
@@ -17,14 +17,13 @@ public class Main {
     private static class Listner extends CalculatorBaseListener {
 
         private Stack<Integer> stack = new Stack<Integer>();
-        
-        @Override 
-        public void exitCalc(CalculatorParser.CalcContext ctx) { 
-            System.out.println(stack.peek()); 
+
+        public int getResult() {
+            return stack.peek();
         }
 
-        @Override 
-        public void exitMulDiv(CalculatorParser.MulDivContext ctx) { 
+        @Override
+        public void exitMulDiv(CalculatorParser.MulDivContext ctx) {
             int right = stack.pop();
             int left = stack.pop();
             int result;
@@ -33,11 +32,11 @@ public class Main {
             } else {
                 result = left / right;
             }
-            stack.push(result); 
+            stack.push(result);
         }
-        
-        @Override 
-        public void exitAddSub(CalculatorParser.AddSubContext ctx) { 
+
+        @Override
+        public void exitAddSub(CalculatorParser.AddSubContext ctx) {
             int right = stack.pop();
             int left = stack.pop();
             int result;
@@ -46,11 +45,11 @@ public class Main {
             } else {
                 result = left - right;
             }
-            stack.push(result); 
+            stack.push(result);
         }
 
-        @Override 
-        public void exitInt(CalculatorParser.IntContext ctx) { 
+        @Override
+        public void exitInt(CalculatorParser.IntContext ctx) {
             stack.push(Integer.valueOf(ctx.INT().getText()));
         }
     }
@@ -66,10 +65,12 @@ public class Main {
         //System.out.println(tokens.getText());
 
         CalculatorParser parser = new CalculatorParser(tokens);
-        ParseTree tree = parser.calc(); // parse
+        ParseTree tree = parser.expr(); // parse
 
         ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(new Listner(), tree);
+        Listner listner = new Listner();
+        walker.walk(listner, tree);
+        System.out.println(listner.getResult());
 
     }
 }
