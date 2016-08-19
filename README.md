@@ -1,6 +1,8 @@
 
 # ANTLR4 calculator example
 
+A short tutorial with the calculator grammar and code for both the visitor and the listener patterns.
+
 ## Set up env variables
 
     cat /etc/profile.d/antlr4.sh 
