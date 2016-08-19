@@ -7,44 +7,51 @@
  * Visit http://www.pragmaticprogrammer.com/titles/tpantlr2 for more book information.
 ***/
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.*;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Stack;
 
 public class Main {
-    private static class Visitor extends CalculatorBaseVisitor<Integer> {
+    private static class Listner extends CalculatorBaseListener {
+
+        private Stack<Integer> stack = new Stack<Integer>();
         
         @Override 
-        public Integer visitParens(CalculatorParser.ParensContext ctx) { 
-            return visit(ctx.expr());
+        public void exitCalc(CalculatorParser.CalcContext ctx) { 
+            System.out.println(stack.peek()); 
         }
 
         @Override 
-        public Integer visitMulDiv(CalculatorParser.MulDivContext ctx) { 
-            int left = visit(ctx.expr(0));
-            int right = visit(ctx.expr(1));
+        public void exitMulDiv(CalculatorParser.MulDivContext ctx) { 
+            int right = stack.pop();
+            int left = stack.pop();
+            int result;
             if (ctx.op.getType() == CalculatorParser.MUL) {
-                return left * right;
+                result = left * right;
             } else {
-                return left / right;
+                result = left / right;
             }
+            stack.push(result); 
         }
         
         @Override 
-        public Integer visitAddSub(CalculatorParser.AddSubContext ctx) { 
-            int left = visit(ctx.expr(0));
-            int right = visit(ctx.expr(1));
+        public void exitAddSub(CalculatorParser.AddSubContext ctx) { 
+            int right = stack.pop();
+            int left = stack.pop();
+            int result;
             if (ctx.op.getType() == CalculatorParser.ADD) {
-                return left + right;
+                result = left + right;
             } else {
-                return left - right;
+                result = left - right;
             }
+            stack.push(result); 
         }
 
         @Override 
-        public Integer visitInt(CalculatorParser.IntContext ctx) { 
-            return Integer.valueOf(ctx.INT().getText());
+        public void exitInt(CalculatorParser.IntContext ctx) { 
+            stack.push(Integer.valueOf(ctx.INT().getText()));
         }
     }
 
@@ -59,9 +66,10 @@ public class Main {
         //System.out.println(tokens.getText());
 
         CalculatorParser parser = new CalculatorParser(tokens);
-        ParseTree tree = parser.expr(); // parse
+        ParseTree tree = parser.calc(); // parse
 
-        Visitor eval = new Visitor();
-        System.out.println(eval.visit(tree));
+        ParseTreeWalker walker = new ParseTreeWalker();
+        walker.walk(new Listner(), tree);
+
     }
 }
