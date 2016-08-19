@@ -13,8 +13,8 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Stack;
 
-public class Main {
-    private static class Listner extends CalculatorBaseListener {
+public class MainListen {
+    private static class Listener extends CalculatorBaseListener {
 
         private Stack<Integer> stack = new Stack<Integer>();
 
@@ -68,9 +68,9 @@ public class Main {
         ParseTree tree = parser.expr(); // parse
 
         ParseTreeWalker walker = new ParseTreeWalker();
-        Listner listner = new Listner();
-        walker.walk(listner, tree);
-        System.out.println(listner.getResult());
+        Listener listener = new Listener();
+        walker.walk(listener, tree);
+        System.out.println(listener.getResult());
 
     }
 }

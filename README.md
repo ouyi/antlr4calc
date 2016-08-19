@@ -8,14 +8,35 @@
     alias antlr4='java -jar /usr/local/lib/antlr-4.5.3-complete.jar'
     alias grun='java org.antlr.v4.gui.TestRig'
 
-## Generate code
+## Clean up
+
+    cd antlr4calc
+    rm Calculator*.java *.tokens *.class  
+
+## Visitor
+
+### Generate code
 
     antlr4 -no-listener -visitor Calculator.g4 
 
-## Compile code
+### Compile code
 
-    javac *.java
+    javac Calculator*.java MainVisit.java
 
-## Run it
+### Run it
 
-    echo "((1+2) * 2)/( 3)" | java Main
+    echo "((1+2) * 2 + 2)/( 2 )" | java MainVisit
+
+## Listener
+
+### Generate code
+
+    antlr4 Calculator.g4 
+
+### Compile code
+
+    javac Calculator*.java MainListen.java
+
+### Run it
+
+    echo "((1+2) * 2 + 2)/( 2 )" | java MainListen
