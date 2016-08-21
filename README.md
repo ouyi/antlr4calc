@@ -9,7 +9,7 @@ A short antlr4 tutorial with the calculator grammar and code examples for the fo
 
 which can be run independent of each other (see the corresponding sections).
 
-The code are tested in a docker container running centos 7, jdk 1.8, antlr4, and nodejs 4 (nodejs is only required for the JavaScript example). The docker image can be pulled from https://hub.docker.com/r/ouyi/docker-centos-dev/, which is however not a hard dependency of this tutorial, because the code examples shall work in a similar environment.
+The code are tested in a docker container running centos 7, jdk 1.8, antlr4, and nodejs 4 (nodejs is only required for the JavaScript example). The docker image can be pulled from https://hub.docker.com/r/ouyi/docker-centos-dev/, which is however not a hard dependency of this tutorial, because the code examples shall work in any similar environment.
 
 This repository can be cloned by doing:
 
@@ -29,43 +29,43 @@ This repository can be cloned by doing:
 
 ## Java Visitor
 
-### Generate code
+Generate code
 
     antlr4 -no-listener -visitor Calculator.g4
 
-### Compile code
+Compile code
 
     javac Calculator*.java MainVisit.java
 
-### Run it
+Run it
 
     echo "((1+2) * 2 + 2)/( 1 + 1 )" | java MainVisit
 
 ## Java Listener
 
-### Generate code
+Generate code
 
     antlr4 Calculator.g4
 
-### Compile code
+Compile code
 
     javac Calculator*.java MainListen.java
 
-### Run it
+Run it
 
     echo "((1+2) * 2 + 2)/( 1 + 1 )" | java MainListen
 
 ## JavaScript Listener
 
-### Install antlr4 JavaScript runtime (requires nodejs and npm)
+Install antlr4 JavaScript runtime (requires nodejs and npm)
 
     npm install antlr4
 
-### Generate code
+Generate code
 
     antlr4 -Dlanguage=JavaScript Calculator.g4
 
-### Run it
+Run it
 
     echo "((1+2) * 2 + 2)/( 1 + 1 )" | node Main.js
 
