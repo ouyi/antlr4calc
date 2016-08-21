@@ -1,11 +1,17 @@
 
-# ANTLR4 calculator example
+# ANTLR4 calculator examples
 
-A short antlr4 tutorial with the calculator grammar and code examples for the following: 
+A short antlr4 tutorial with the calculator grammar and code examples for the following languages and design patterns: 
 
 - Java visitor 
 - Java listener 
 - JavaScript listener
+
+Tested in a docker container running centos 7, jdk 1.8, antlr4, and nodejs 4 (required only for the JavaScript example). The docker image can be pulled from https://hub.docker.com/r/ouyi/docker-centos-dev/, which is however not a hard dependency of this tutorial. The code examples shall work in a similar environment.
+
+This repository can be cloned by doing:
+
+    git clone https://github.com/ouyi/docker-centos-dev.git
 
 ## Set up env variables
 
@@ -31,7 +37,7 @@ A short antlr4 tutorial with the calculator grammar and code examples for the fo
 
 ### Run it
 
-    echo "((1+2) * 2 + 2)/( 2 )" | java MainVisit
+    echo "((1+2) * 2 + 2)/( 1 + 1 )" | java MainVisit
 
 ## Java Listener
 
@@ -45,7 +51,7 @@ A short antlr4 tutorial with the calculator grammar and code examples for the fo
 
 ### Run it
 
-    echo "((1+2) * 2 + 2)/( 2 )" | java MainListen
+    echo "((1+2) * 2 + 2)/( 1 + 1 )" | java MainListen
 
 ## JavaScript Listener
 
