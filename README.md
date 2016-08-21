@@ -1,7 +1,11 @@
 
 # ANTLR4 calculator example
 
-A short tutorial with the calculator grammar and code for both the visitor and the listener patterns.
+A short antlr4 tutorial with the calculator grammar and code examples for the following: 
+
+- Java visitor 
+- Java listener 
+- JavaScript listener
 
 ## Set up env variables
 
@@ -13,9 +17,9 @@ A short tutorial with the calculator grammar and code for both the visitor and t
 ## Clean up
 
     cd antlr4calc
-    rm Calculator*.java *.tokens *.class  
+    rm Calculator*.js Calculator*.java *.tokens *.class
 
-## Visitor
+## Java Visitor
 
 ### Generate code
 
@@ -29,7 +33,7 @@ A short tutorial with the calculator grammar and code for both the visitor and t
 
     echo "((1+2) * 2 + 2)/( 2 )" | java MainVisit
 
-## Listener
+## Java Listener
 
 ### Generate code
 
@@ -42,3 +46,19 @@ A short tutorial with the calculator grammar and code for both the visitor and t
 ### Run it
 
     echo "((1+2) * 2 + 2)/( 2 )" | java MainListen
+
+## JavaScript Listener
+
+### Install antlr4 JavaScript runtime (requires nodejs and npm)
+
+    npm install antlr4
+
+### Generate code
+
+    antlr4 -Dlanguage=JavaScript Calculator.g4
+
+### Run it
+
+    echo "((1+2) * 2 + 2)/( 1 + 1 )" | node Main.js
+
+

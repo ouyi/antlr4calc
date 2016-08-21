@@ -1,3 +1,5 @@
 *.tokens
 *.class
 Calculator*.java
+Calculator*.js
+node_modules/
