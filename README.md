@@ -7,7 +7,7 @@ A short antlr4 tutorial with the calculator grammar and code examples for the fo
 - Java listener
 - JavaScript listener
 
-which can be run independent of each other (see the corresponding sections).
+which can be run independent of each other (see the corresponding sections). Credit goes to the author(s) of the framework antlr (http://www.antlr.org/) and the book "The Definitive ANTLR 4 Reference".
 
 The code are tested in a docker container running centos 7, jdk 1.8, antlr4, and nodejs 4 (nodejs is only required for the JavaScript example). The docker image can be pulled from https://hub.docker.com/r/ouyi/docker-centos-dev/, which is however not a hard dependency of this tutorial, because the code examples shall work in any similar environment.
 
@@ -15,7 +15,7 @@ This repository can be cloned by doing:
 
     git clone https://github.com/ouyi/docker-centos-dev.git
 
-Set up env variables
+Set up env variables by having these lines in the `/etc/profile.d/antlr4.sh` file (or in `~/.bashrc`)
 
     cat /etc/profile.d/antlr4.sh
     export CLASSPATH=".:/usr/local/lib/antlr-4.5.3-complete.jar:$CLASSPATH"
