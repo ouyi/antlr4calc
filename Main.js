@@ -14,10 +14,10 @@ Listener.prototype = Object.create(CalculatorListener.CalculatorListener.prototy
 
 // override default listener behavior
 Listener.prototype.stack = [];
-Listener.prototype.exitInt = function(ctx) {      
+Listener.prototype.exitInt = function(ctx) {
     // stack stores integers only
     this.stack.push(parseInt(ctx.INT().getText()));
-}; 
+};
 Listener.prototype.exitMulDiv = function(ctx) {
     var right = this.stack.pop();
     var left = this.stack.pop();

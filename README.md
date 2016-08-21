@@ -1,13 +1,15 @@
 
 # ANTLR4 calculator examples
 
-A short antlr4 tutorial with the calculator grammar and code examples for the following languages and design patterns: 
+A short antlr4 tutorial with the calculator grammar and code examples for the following languages and design patterns:
 
-- Java visitor 
-- Java listener 
+- Java visitor
+- Java listener
 - JavaScript listener
 
-Tested in a docker container running centos 7, jdk 1.8, antlr4, and nodejs 4 (required only for the JavaScript example). The docker image can be pulled from https://hub.docker.com/r/ouyi/docker-centos-dev/, which is however not a hard dependency of this tutorial. The code examples shall work in a similar environment.
+which can be run independent of each other (see the corresponding sections).
+
+The code are tested in a docker container running centos 7, jdk 1.8, antlr4, and nodejs 4 (nodejs is only required for the JavaScript example). The docker image can be pulled from https://hub.docker.com/r/ouyi/docker-centos-dev/, which is however not a hard dependency of this tutorial, because the code examples shall work in a similar environment.
 
 This repository can be cloned by doing:
 
@@ -15,7 +17,7 @@ This repository can be cloned by doing:
 
 ## Set up env variables
 
-    cat /etc/profile.d/antlr4.sh 
+    cat /etc/profile.d/antlr4.sh
     export CLASSPATH=".:/usr/local/lib/antlr-4.5.3-complete.jar:$CLASSPATH"
     alias antlr4='java -jar /usr/local/lib/antlr-4.5.3-complete.jar'
     alias grun='java org.antlr.v4.gui.TestRig'
@@ -29,7 +31,7 @@ This repository can be cloned by doing:
 
 ### Generate code
 
-    antlr4 -no-listener -visitor Calculator.g4 
+    antlr4 -no-listener -visitor Calculator.g4
 
 ### Compile code
 
@@ -43,7 +45,7 @@ This repository can be cloned by doing:
 
 ### Generate code
 
-    antlr4 Calculator.g4 
+    antlr4 Calculator.g4
 
 ### Compile code
 
@@ -66,5 +68,4 @@ This repository can be cloned by doing:
 ### Run it
 
     echo "((1+2) * 2 + 2)/( 1 + 1 )" | node Main.js
-
 
