@@ -13,7 +13,7 @@ The code are tested in a docker container running centos 7, jdk 1.8, antlr4, and
 
 This repository can be cloned by doing:
 
-    git clone https://github.com/ouyi/docker-centos-dev.git
+    git clone https://github.com/ouyi/antlr4calc.git
 
 Set up env variables by having these lines in the `/etc/profile.d/antlr4.sh` file (or in `~/.bashrc`)
 
